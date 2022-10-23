@@ -1,16 +1,17 @@
 ﻿// Функция упорядочивания массива
-Console.WriteLine("Введите массив чисел за одни раз: ");
 
-string? strArray = Console.ReadLine();
+int[] array = ReadArray("Введите массив из 5 чисел: ");
 
-int[] GetArrayDigit(string arrayDigit)
+
+int[] ReadArray(string message)
 {
-    int[] arrNum = new int[arrayDigit.Length];
-    for(int i = 0; i < arrayDigit.Length; i++)
+    Console.WriteLine(message);
+    int[] array = new int[5];
+    for (int i = 0; i < array.Length; i++)
     {
-
+        array[i] = Convert.ToInt32(Console.ReadLine());
     }
-    return arrNum;
+    return array;
 }
 
 int[] GetArraySort(int[] array)
