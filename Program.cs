@@ -3,9 +3,10 @@
 int[] arrayNoSort = ReadArray("Введите массив из 5 чисел: ");
 Console.WriteLine($"Ваш массив: {PrintArray(arrayNoSort)} до сортировки");
 
-int[] arraySort = GetArraySort(arrayNoSort);
-Console.WriteLine($"Массив: {PrintArray(arraySort)} после сортировки");
+GetArraySort(arrayNoSort);
+Console.WriteLine($"Массив: {PrintArray(arrayNoSort)} после сортировки");
 
+// Печать массива
 string PrintArray(int[] array)
 {
     string sArray = "{";
@@ -18,6 +19,8 @@ string PrintArray(int[] array)
     }
     return sArray+"}";
 }
+
+// Чтение массива от пользователя
 int[] ReadArray(string message)
 {
     Console.WriteLine(message);
@@ -29,28 +32,22 @@ int[] ReadArray(string message)
     return array;
 }
 
-int[] GetArraySort(int[] array)
+// Сортировка массива
+void GetArraySort(int[] array)
 {
-    int[] arrNew = new int[array.Length];
-    arrNew[0] = array[0];
+    int minPos = 0;
     int temp = 0;
-    for(int i = 0; i < array.Length; i++)
+    for(int i = 0; i < array.Length-1; i++)
     {
-        for(int j = 1; j < array.Length-1; j++)
+        minPos = i;
+        for(int j = i+1; j < array.Length; j++)
         {
-            if (arrNew[i] < array[j])
-            {
-                arrNew[i] = array[i];
-                arrNew[j] = array[j];
-            }
-            else
-            {
-                temp = arrNew[i];
-                arrNew[i] = array[j];
-                arrNew[j] = temp;
-            }       
+            if (array[j] < array[minPos])
+                minPos = j;
         }
-    }
+        temp = array[i];
+        array[i] = array[minPos];
+        array[minPos] = temp;
 
-    return arrNew;
+    }
 }
